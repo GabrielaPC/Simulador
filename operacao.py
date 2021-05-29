@@ -21,14 +21,20 @@ class Operacao:
             self.test = t
 
     #
-    ####    Implementação dos operadores (gates) elementares
+    ####    Implementação dos operadores (gates) 
     #
     #
     #
-    # k = bit inicial, t = repetições
+    # k = bit inicial, t = repetições e theta,phi,lam = ângulos
 
+    
+    ''' Os gates e suas definições podem ser encontrados no site:
+        https://quantum-computing.ibm.com/composer/docs/iqx/operations_glossary
+    '''
 
     # define uma permutação
+    ## Implementa um operador genérico através da sua permutação
+    # P = permutação.
     def perm(self,k,t,P):
         self.isPerm = True
         if self.test :
@@ -49,7 +55,8 @@ class Operacao:
         self.V_op = vetor(self.n,nova_perm)
 
 
-    # x - inverte
+    # x - NOT 
+    ## inverte o estado do bit
     def x(self,k,t=1):
         self.isPerm = True
         if self.test :
@@ -95,7 +102,7 @@ class Operacao:
         self.M_op = op
 
     # z - Pauli Z gate
-    ## Esta porta pode ser associada a um vetor em vez de matriz
+    ## Esta porta pode ser associada a um vetor ao em vez de matriz
     def z(self,k,t=1):
         self.isPerm = False
         op = Matrix([1])
@@ -185,7 +192,8 @@ class Operacao:
         self.flag_M = True
         self.M_op = op
     
-    # u3 - U gate    
+    # u3 - U gate
+    ## Esse gate consegue gerar qualquer gate de 1 bit.    
     def u3(self,theta,phi,lam,k,t=1):
         op = Matrix([1])
         for i in range(self.n):
@@ -262,10 +270,13 @@ class Operacao:
                 
         self.flag_M = True
         self.M_op = op  
-
-    #gates com 2 bits.
-
+   
+    #
+    ##gates com 2 bits.
+    #
+    
     # cx - CNOT gate
+    ## veri = dígito verificador, target = bit alvo
     def cx(self,veri,target):
         self.isPerm = True
         if self.test :
@@ -289,7 +300,7 @@ class Operacao:
 
         self.V_op = V
     
-    # ch - CHadamard
+    # ch - Controlled Hadamard
     def ch(self,k):
         self.isPerm = False
         if self.test :
@@ -305,7 +316,7 @@ class Operacao:
         self.flag_M = True
         self.M_op = op    
 
-    # cy - CY gate
+    # cy - Controlled Y gate
     def cy(self,k):
         self.isPerm = False
         if self.test :
@@ -321,7 +332,7 @@ class Operacao:
         self.flag_M = True
         self.M_op = op
 
-    # cz - CZ gate    
+    # cz - Controlled Z gate    
     def cz(self,k):
         self.isPerm = False
         if self.test :
@@ -337,7 +348,7 @@ class Operacao:
         self.flag_M = True
         self.M_op = op
     
-    # cs - CS gate
+    # cs - Controlled S gate
     def cs(self,k):
         self.isPerm = False
         if self.test :
@@ -353,7 +364,7 @@ class Operacao:
         self.flag_M = True
         self.M_op = op
 
-    
+    # crx - Controlled RX gate
     def crx(self,theta,k):
         self.isPerm = False
         if self.test :
@@ -369,6 +380,7 @@ class Operacao:
         self.flag_M = True
         self.M_op = op
 
+    # cry - Controlled RY gate
     def cry(self,theta,k):
         self.isPerm = False
         if self.test :
@@ -383,7 +395,8 @@ class Operacao:
                 
         self.flag_M = True
         self.M_op = op
- 
+
+    # crz - Controlled RZ gate        
     def crz(self,theta,k):
         self.isPerm = False
         if self.test :
@@ -398,7 +411,8 @@ class Operacao:
                 
         self.flag_M = True
         self.M_op = op    
-
+        
+    # cu1 - Controlled U1 gate
     def cu1(self,theta,k):
         self.isPerm = False
         if self.test :
@@ -414,6 +428,7 @@ class Operacao:
         self.flag_M = True
         self.M_op = op    
     
+    # cu3 - Controlled U3 gate
     def cu3(self,theta,phi,lam,k):
         self.isPerm = False
         if self.test :
@@ -429,6 +444,9 @@ class Operacao:
         self.flag_M = True
         self.M_op = op
     
+    # swap - Swap gate
+    ## Troca os estados de 2 bits
+    ## bit1 = primeiro bit, bit2 = segundo bit. (a ordem não importa) 
     def swap(self,bit1,bit2):
         self.isPerm = True
         if self.test :
@@ -451,6 +469,7 @@ class Operacao:
                     
         self.V_op = V
     
+    # rxx - RXX gate
     def rxx(self,theta,k):
         self.isPerm = False
         if self.test :
@@ -465,7 +484,8 @@ class Operacao:
                 
         self.flag_M = True
         self.M_op = op
- 
+
+    # czz - Controlled ZZ gate 
     def czz(self,theta,k):
         self.isPerm = False
         if self.test :
@@ -481,11 +501,12 @@ class Operacao:
         self.flag_M = True
         self.M_op = op
         
+    # cfs - Condicional Phase Shift    
     def cfs(self,k,t):
         self.isPerm = False
         if self.test :
             return self.isPerm
-        # Condicional Phase Shift
+        
         op = Matrix([1])
         for i in range(self.n):        
             if i == k:
@@ -498,12 +519,12 @@ class Operacao:
         self.flag_M = True
         self.M_op = op
         
-
-
-
-    # gates com 3 bits.
-    
-        
+    #
+    ## gates com 3 bits.
+    #
+       
+    # ccx - Toffoli gate
+    ## veri1 e veri2 = dígitos verificadores, target = bit alvo 
     def ccx(self,veri1,veri2,target):
         self.isPerm = True
         if self.test :
@@ -526,7 +547,9 @@ class Operacao:
                     
 
         self.V_op = V
-
+    
+    # cswap - Controlled Swap gate
+    ## Atualmente está como matriz, porém pode ser transformado em permutação como foi feito em outros gates.
     def cswap(self,k):
         self.isPerm = False
         if self.test :
@@ -542,7 +565,9 @@ class Operacao:
         self.flag_M = True
         self.M_op = op
 
-    #Operador genérico, por enquanto precisa ser do mesmo tamanho que a simulação, será alterado no futuro.
+    # gen_op - Operador genérico
+    ## Implementa qualquer gate através da dua matriz
+    ## q_bits = quantidade de bits do gate, matriz = matriz
     def gen_op(self,k,q_bits,matriz):
         self.isPerm = False
         if self.test :
@@ -557,12 +582,3 @@ class Operacao:
         self.flag_M = True
         self.M_op = op
 
-#criação de funções, em progresso
-#pensar na melhor solução possível
-class funcao:
-    def __init__(self,nome,variaveis,codigo):
-        self.nome = nome
-        self.variaveis = variaveis
-        self.codigo = codigo
-
-            

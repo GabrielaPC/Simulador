@@ -1,7 +1,15 @@
 Program 3 100
 
+int k = 1
+
+for i = 0 to 2 { 
+h(i) 
+}
+
+
 h(1)
 cx(1,0)
 x(2)
+ 
 
 medir([2,1,0])

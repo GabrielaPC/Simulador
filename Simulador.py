@@ -7,7 +7,9 @@ ultima alteração: 19/05/2021 (GP)
 
 pendências:   
 
-1- *Ideia: definição de funções já salvar o matriz operador resultante.
+1- Definição de funções
+2- Otimização do processamento 
+3- *Ideia: definição de funções já salvar o matriz operador resultante.
 
 status atual: cx,ccx,swap são permutações.
 
