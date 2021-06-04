@@ -1,4 +1,4 @@
-Program 3 100
+Program 3 100 Matrix = True
 
 int k = 1
 

@@ -21,5 +21,5 @@ from simulacao import *
 nome_arquivo = "teste.txt"
 #nome_arquivo = input("Digite o nome do arquivo: ")
 
-simu = simulacao(0,0,nome_arquivo)
+simu = simulacao(0,nome_arquivo)
 simu.simular()
